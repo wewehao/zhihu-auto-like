@@ -1,0 +1,37 @@
+{
+  "version": "0.0.1",
+  "name": "知乎批量点赞",
+  "manifest_version": 3,
+  "action": {
+    "default_icon": "./static/img/logo.png",
+    "default_title": "知乎批量点赞",
+    "default_popup": "./popup.html"
+  },
+  "description": "每天一个点赞小技巧",
+  "background": {
+    "service_worker": "./static/js/background.js",
+    "type": "module"
+  },
+  "content_scripts": [{
+    "all_frames": false,
+    "run_at": "document_idle",
+    "js": ["./static/js/content.js"],
+    "match_about_blank": true,
+    "matches": ["<all_urls>"]
+  }],
+  "icons": {
+    "16": "./static/img/logo.png",
+    "48": "./static/img/logo.png",
+    "128": "./static/img/logo.png"
+  },
+  "minimum_chrome_version": "49",
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  },
+  "permissions": ["tabs", "cookies"],
+  "update_url": "https://clients2.google.com/service/update2/crx",
+  "web_accessible_resources": [{
+    "resources": ["static/img/logo.png"],
+    "matches": ["<all_urls>"]
+  }]
+}
